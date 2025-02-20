@@ -6,17 +6,51 @@ import ReactIcon from "./icons/React.astro";
 import GitIcon from "./icons/Git.astro";
 import CssIcon from "./icons/Css.astro";
 import PixelCard from "./PixelCard.astro";
-import MysqlIcon from "./icons/MySQL.astro";
 import MongoDBIcon from "./icons/MongoDB.astro";
 import NodeJSIcon from "./icons/NodeJS.astro";
 
-//TODO: implement this
-const TECH_ITEMS = {
-  REACT: {
-    name: "REACT JS",
-    class: "bg-black text-white",
+const techItems = [
+  {
+    cardClass: "lg:col-span-2 lg:row-span-2",
+    cardColors: "#89023e,#f7b733",
+    icon: ReactIcon,
   },
-};
+  {
+    cardClass: "lg:row-span-2",
+    cardColors: "#12898F,#119D4F",
+    icon: AngularIcon,
+  },
+  {
+    cardClass: "col-span-2",
+    cardColors: "#0E095D,#2C72D3",
+    icon: JavascriptIcon,
+  },
+  {
+    cardClass: "col-span-2",
+    cardColors: "#CB34B2,#5D0442",
+    icon: NodeJSIcon,
+  },
+  {
+    cardClass: "",
+    cardColors: "#0E095D,#2C72D3",
+    icon: GitIcon,
+  },
+  {
+    cardClass: "lg:col-span-2",
+    cardColors: "#f7b733,#89023e",
+    icon: TypescriptIcon,
+  },
+  {
+    cardClass: "",
+    cardColors: "#0E095D,#2C72D3",
+    icon: MongoDBIcon,
+  },
+  {
+    cardClass: "",
+    cardColors: "#12898F,#119D4F",
+    icon: CssIcon,
+  },
+];
 ---
 
 <div class="flex flex-col gap-y-16">
@@ -25,37 +59,13 @@ const TECH_ITEMS = {
   >
     <div class="w-full">
       <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
-        <PixelCard
-          class="md:col-span-1 lg:col-span-2 md:row-span-2"
-          dataColors="#17E6C8,#3317E6">
-          <ReactIcon class="w-20 h-20" />
-        </PixelCard>
-        <PixelCard class="md:col-span-2" dataColors="#A1F711,#41F711">
-          <JavascriptIcon class="w-20 h-20" />
-        </PixelCard>
-        <PixelCard class="md:row-span-2" dataColors="#F73111,#F75911">
-          <AngularIcon class="w-20 h-20" />
-        </PixelCard>
-        <PixelCard class="md:col-span-2" dataColors="#8011F7,#11C9F7">
-          <TypescriptIcon class="w-20 h-20" />
-        </PixelCard>
-      </div>
-      <div class="pt-3 grid grid-cols-2 lg:grid-cols-6 gap-2">
-        <PixelCard class="col-span-2" dataColors="#8011F7,#11C9F7">
-          <NodeJSIcon class="w-20 h-20" />
-        </PixelCard>
-        <PixelCard dataColors="#8011F7,#11C9F7">
-          <GitIcon class="w-24 h-24" />
-        </PixelCard>
-        <PixelCard dataColors="#8011F7,#11C9F7">
-          <MysqlIcon class="w-24 h-24" />
-        </PixelCard>
-        <PixelCard dataColors="#8011F7,#11C9F7">
-          <MongoDBIcon class="w-24 h-24" />
-        </PixelCard>
-        <PixelCard dataColors="#8011F7,#11C9F7">
-          <CssIcon class="w-24 h-24" />
-        </PixelCard>
+        {
+          techItems.map((item: any) => (
+            <PixelCard class={item.cardClass} dataColors={item.cardColors}>
+              <item.icon class="w-20 h-20" />
+            </PixelCard>
+          ))
+        }
       </div>
     </div>
   </article>

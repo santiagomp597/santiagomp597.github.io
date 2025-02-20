@@ -4,11 +4,20 @@ interface Props {
   company: string;
   companyDescription: string;
   description: string;
+  imageUrl: string;
+  imageAlt: string;
   date: string;
 }
 
-const { title, company, companyDescription, description, date } =
-  Astro.props;
+const {
+  title,
+  company,
+  companyDescription,
+  description,
+  imageUrl,
+  imageAlt,
+  date,
+} = Astro.props;
 ---
 
 <div
@@ -16,10 +25,13 @@ const { title, company, companyDescription, description, date } =
 >
   <div class="relative pb-6 md:col-span-2">
     <div class="sticky top-0">
-      <span class="text-blue-500 dark:text-green-400 -left-[42px] absolute rounded-full text-5xl"
+      <span
+        class="text-blue-500 dark:text-green-400 -left-[42px] absolute rounded-full text-5xl"
         >&bull;
       </span>
-      <h3 class="text-2xl font-bold text-blue-500 dark:text-green-400">{title}</h3>
+      <h3 class="text-2xl font-bold text-blue-500 dark:text-green-400">
+        {title}
+      </h3>
       <h4 class="font-semibold text-xl text-gray-600 dark:text-white">
         {company}
       </h4>
@@ -35,5 +47,12 @@ const { title, company, companyDescription, description, date } =
     class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3"
   >
     {description}
+    <div class="pt-5 shadow-2xl">
+      <img
+        class="w-full h-80 object-cover object-top rounded-lg"
+        src={imageUrl}
+        alt={imageAlt}
+      />
+    </div>
   </div>
 </div>
