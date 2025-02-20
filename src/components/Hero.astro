@@ -1,0 +1,35 @@
+---
+const personalImageAlt = "Santiago Murillo";
+const linkedInUrl = "https://linkedin.com/in/santiago-murillo";
+import LinkedInIcon from "@/components/icons/LinkedIn.astro";
+import SocialPill from "@/components/SocialPill.astro";
+import Download from "./icons/Download.astro";
+---
+
+<div class="max-w-xl">
+  <div class="flex gap-4 mb-4 items-center">
+    <div class="w-24 h-24">
+      <img class="m-auto" src="/avatar.png" alt={personalImageAlt} />
+    </div>
+    <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">
+      Hola!, soy Santiago Murillo
+    </h1>
+  </div>
+  <p class="mt-6 text-xl text-gray-800 dark:text-gray-300">
+    +8 años de experiencia. <strong
+      class="font-semibold text-blue-500 dark:text-green-400"
+      >Ingeniero de Software y Desarrollador Web</strong
+    >
+    de Bogota, Colombia.
+  </p>
+  <nav class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
+    <SocialPill href={linkedInUrl}>
+      <LinkedInIcon class="size-4" />
+      LinkedIn
+    </SocialPill>
+    <SocialPill href="mailto:santiagomp597@gmail.com">
+      <Download class="size-4" />
+      Descargar CV
+    </SocialPill>
+  </nav>
+</div>

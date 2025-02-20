@@ -1,0 +1,47 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import AboutMe from "@/components/AboutMe.astro";
+import Briefcase from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import Experience from "@/components/Experience.astro";
+import ProfileCheck from "@/components/icons/ProfileCheck.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import Hero from "@/components/Hero.astro";
+import TitleSection from "@/components/TitleSection.astro";
+import Technologies from "@/components/Technologies.astro";
+---
+
+<Layout
+  title="Porfolio de Santiago Murillo - Desarrollador y Programador Web con 8 años de experiencia"
+  description="Contrata a Santiago Murillo para tus necesidades de desarrollo web."
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <Hero />
+    </SectionContainer>
+    <div class="space-y-24">
+      <SectionContainer id="experiencia">
+        <TitleSection>
+          <Briefcase class="size-8" />
+          Experiencia laboral
+        </TitleSection>
+        <Experience />
+      </SectionContainer>
+      <SectionContainer id="tecnologias">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          Tecnologias
+        </TitleSection>
+        <Technologies />
+      </SectionContainer>
+      <SectionContainer id="sobre-mi">
+        <TitleSection>
+          <ProfileCheck class="size-8" />
+          Sobre mí
+        </TitleSection>
+        <AboutMe />
+      </SectionContainer>
+    </div>
+  </main>
+</Layout>
