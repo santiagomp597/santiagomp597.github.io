@@ -1,9 +1,8 @@
 ---
-import "@fontsource-variable/onest";
+import '@fontsource/poppins';
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -22,7 +21,6 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
 
   <body class="relative text-black dark:text-white">
@@ -41,7 +39,7 @@ const { description, title } = Astro.props;
       }
 
       html {
-        font-family: "Onest Variable", system-ui, sans-serif;
+        font-family: "Poppins", system-ui, sans-serif;
         scroll-behavior: smooth;
       }
 
