@@ -4,12 +4,14 @@ const linkedInUrl = "https://linkedin.com/in/santiago-murillo";
 import LinkedInIcon from "@/components/icons/LinkedIn.astro";
 import SocialPill from "@/components/SocialPill.astro";
 import Download from "./icons/Download.astro";
+import { Image } from "astro:assets";
+import avatarImage from '../assets/avatar.png'; 
 ---
 
 <div class="max-w-xl">
   <div class="flex gap-4 mb-4 items-center">
     <div class="w-24 h-24">
-      <img class="m-auto" src="/avatar.png" alt={personalImageAlt} />
+      <Image class="m-auto" src={avatarImage} alt={personalImageAlt} />
     </div>
     <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">
       Hola!, soy Santiago Murillo
