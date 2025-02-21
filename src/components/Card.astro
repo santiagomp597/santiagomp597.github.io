@@ -1,0 +1,20 @@
+---
+const { class: className } = Astro.props;
+---
+<div
+  class={`${className} card relative overflow-hidden grid place-items-center border border-blue-500 dark:border-green-400 shadow-md rounded-xl h-auto`}
+>
+  <slot />
+</div>
+
+<style>
+  .card {
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: scale(1.02);
+  }
+  .card {
+    perspective: 800px;
+  }
+</style>
