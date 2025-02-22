@@ -5,7 +5,7 @@ interface Props {
   title: string;
   company: string;
   companyDescription: string;
-  description: string;
+  jobDescription: string;
   image: ImageMetadata;
   imageAlt: string;
   date: string;
@@ -15,7 +15,7 @@ const {
   title,
   company,
   companyDescription,
-  description,
+  jobDescription,
   image,
   imageAlt,
   date,
@@ -23,13 +23,13 @@ const {
 ---
 
 <div
-  class="relative mx-12 pb-14 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]"
+  class="relative mx-12 pb-14 grid md:grid-cols-5 md:gap-10 md:space-x-4]"
 >
   <div class="relative pb-6 md:col-span-2">
-    <div class="sticky top-0">
+    <div class="sticky top-14">
       <span
-        class="text-blue-500 dark:text-green-400 -left-[42px] absolute rounded-full text-5xl"
-        >&bull;
+        class="text-blue-500 dark:text-green-400 -left-[45px] absolute rounded-full text-5xl"
+        >&raquo;
       </span>
       <h3 class="text-2xl font-bold text-blue-500 dark:text-green-400">
         {title}
@@ -46,12 +46,12 @@ const {
     </div>
   </div>
   <div
-    class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3"
+    class="relative flex flex-col gap-2 pb-5 text-gray-600 dark:text-gray-300 md:col-span-3"
   >
-    {description}
+    <div class="py-2" set:html={jobDescription}></div>
     <div class="pt-5 shadow-2xl">
       <Image
-        class="transition-transform duration-300 ease-in-out hover:scale-105 w-full h-40 md:h-72 object-cover object-top rounded-lg"
+        class="transition-transform duration-300 ease-in-out hover:scale-105 w-full h-40 md:h-80 object-cover object-top rounded-lg"
         src={image}
         alt={imageAlt}
       />
