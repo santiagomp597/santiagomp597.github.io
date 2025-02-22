@@ -12,8 +12,8 @@ Este proyecto ha sido desarrollado utilizando **Astro** y **Tailwind CSS** para 
 
 1. Clona este repositorio:
    ```sh
-   git clone https://github.com/tu-usuario/tu-repositorio.git
-   cd tu-repositorio
+   git clone https://github.com/santiagomp597/santiagomp597.github.io.git
+   cd santiagomp597.github.io.git
    ```
 
 2. Instala las dependencias:
@@ -30,7 +30,7 @@ Este proyecto ha sido desarrollado utilizando **Astro** y **Tailwind CSS** para 
    yarn dev
    ```
 
-4. Abre tu navegador y visita `http://localhost:4321` (según configuración de Astro).
+4. Abre tu navegador y visita `http://localhost:4321`.
 
 ## 📜 Licencia
 
