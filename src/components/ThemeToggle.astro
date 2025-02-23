@@ -23,23 +23,23 @@ const { class: className } = Astro.props;
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
 
-  const getTheme = () => localStorage.getItem("theme") || "system";
+  const getTheme = () => localStorage.getItem("theme") || "dark";
 
   const applyTheme = () => {
     const theme = getTheme();
     const isDark =
-      theme === "dark" || (theme === "system" && matchMedia.matches);
+      theme === "dark" || (theme === "dark" && matchMedia.matches);
 
     document.documentElement.classList.toggle("dark", isDark);
     document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
-      el.style.scale = el.id === theme ? "1" : "0";
+      el.style.scale = (el.id === theme) ? "1" : "0";
     });
   };
 
   themeToggleBtn.addEventListener("click", (e) => {
     const theme = getTheme();
     const isDark =
-      theme === "dark" || (theme === "system" && matchMedia.matches);
+      theme === "dark" || (theme === "dark" && matchMedia.matches);
     e.stopPropagation();
     localStorage.setItem("theme", isDark ? "light" : "dark");
     applyTheme();
