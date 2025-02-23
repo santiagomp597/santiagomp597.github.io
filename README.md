@@ -2,7 +2,7 @@
 
 Este proyecto ha sido desarrollado utilizando **Astro** y **Tailwind CSS** para lograr un diseño moderno y una navegación fluida.
 
-### 🚀 Características
+### 👀 Características
 - **Diseño Responsivo**
 - **Animaciones Interactivas**
 - **Despliegue Rápido**
@@ -42,4 +42,4 @@ Si deseas ponerte en contacto conmigo, puedes encontrarme en:
 - LinkedIn: [Santiago Murillo Pinzon](https://www.linkedin.com/in/santiago-murillo)
 - Email: santiagomp597@gmail.com
 
-¡Gracias por visitar mi portafolio! 🚀
+¡Gracias por visitar mi portafolio! 🥰
