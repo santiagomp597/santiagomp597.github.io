@@ -3,7 +3,10 @@ const { class: className } = Astro.props;
 ---
 
 <div
-  class={`${className} card relative overflow-hidden grid place-items-center border border-white shadow-md rounded-xl h-auto`}
+  class={`${className} card relative overflow-hidden grid place-items-center border border-white rounded-xl h-auto
+  shadow-[0_0_0.1rem_#fff,0_0_0.1rem_#fff,0_0_0.5rem_#3b82f680,0_0_0.3rem_#3b82f680,inset_0_0_0.5rem_#3b82f680]
+  dark:shadow-[0_0_0.1rem_#fff,0_0_0.1rem_#fff,0_0_0.5rem_#49da7e80,0_0_0.3rem_#49da7e80,inset_0_0_0.5rem_#49da7e80]
+  `}
 >
   <slot />
 </div>
@@ -11,8 +14,6 @@ const { class: className } = Astro.props;
 <style>
 .card {
   transition: transform 0.3s ease-in-out;
-  @apply shadow-[0_0_0.1rem_#fff,0_0_0.1rem_#fff,0_0_0.5rem_#3b82f680,0_0_0.3rem_#3b82f680,inset_0_0_0.5rem_#3b82f680];
-  @apply dark:shadow-[0_0_0.1rem_#fff,0_0_0.1rem_#fff,0_0_0.5rem_#49da7e80,0_0_0.3rem_#49da7e80,inset_0_0_0.5rem_#49da7e80];
 }
   .card:hover {
     transform: scale(1.02);
