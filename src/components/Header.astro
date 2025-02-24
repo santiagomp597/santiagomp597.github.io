@@ -1,4 +1,5 @@
 ---
+import SettingsToggle from "./SettingsToggle.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
@@ -38,7 +39,7 @@ const navItems = [
           </a>
         ))
       }
-      <ThemeToggle />
+      <SettingsToggle />
     </div>
   </nav>
 </header>
@@ -46,7 +47,6 @@ const navItems = [
 <script>
   const sections = document.querySelectorAll("section");
   const navItems = document.querySelectorAll("header nav div a");
-  console.log("AAA", navItems);
   const callback = (entries: any[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

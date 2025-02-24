@@ -1,0 +1,45 @@
+---
+import LanguageEnIcon from "./icons/LanguageEn.astro";
+import LanguageEsIcon from "./icons/LanguageEs.astro";
+const { class: className } = Astro.props;
+const currentLang = Astro.props.lang || "es";
+---
+
+<div id="lang-toggle-container" class={`${className} appearance-none`}>
+  <LanguageEnIcon
+    id="en"
+    class={`${currentLang === "es" ? "hidden" : "visible"} lang-toggle-icon size-5 hover:scale-125 transition-all`}
+  />
+  <LanguageEsIcon
+    id="es"
+    class={`${currentLang === "en" ? "hidden" : "visible"} lang-toggle-icon size-5 hover:scale-125 transition-all`}
+  />
+</div>
+<script is:inline>
+  const langToggleBtn = document.getElementById("lang-toggle-container");
+  const getLang = () => localStorage.getItem("lang") || "es";
+  const switchLang = (lang) => {
+  localStorage.setItem("lang", lang);
+  window.location.reload(); // Recargar la página para aplicar el idioma
+};
+  const applyLang = () => {
+    const lang = getLang();
+    document.querySelectorAll(".lang-toggle-icon").forEach((el) => {
+      if (el.id === lang) {
+        el.classList.remove("hidden");
+        el.classList.add("visible");
+      } else {
+        el.classList.remove("visible");
+        el.classList.add("hidden");
+      }
+      el.classList.add(el.id === lang ? "visible" : "hidden");
+    });
+  };
+  langToggleBtn.addEventListener("click", (e) => {
+    const lang = getLang();
+    e.stopPropagation();
+    switchLang(lang === "es" ? "en" : "es");
+  });
+  document.addEventListener("astro:after-swap", applyLang);
+  applyLang();
+  </script>

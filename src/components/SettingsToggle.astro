@@ -1,0 +1,72 @@
+---
+import SettingsIcon from "./icons/Settings.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import LanguageToggle from "./LanguageToggle.astro";
+const { class: className } = Astro.props;
+---
+
+<div class={`${className} relative ml-1 mr-1`}>
+  <button
+    transition:persist
+    class="appearance-none border-none flex hover:scale-125 transition"
+  >
+    <SettingsIcon id="settings-btn" class="size-5 transition-all" />
+  </button>
+  <div id="settings-ind" class="text-center pt-0.5 absolute left-2">I</div>
+  <div
+    id="settings-menu"
+    class="pt-0.5 dark:bg-gray-800/90 bg-white/50; bg-white rounded-lg absolute top-9 -right-2 transition-all"
+  >
+    <ul class="list-none">
+      <li class="m-2">
+        <ThemeToggle />
+      </li>
+      <li class="m-2">
+        <LanguageToggle />
+      </li>
+    </ul>
+  </div>
+</div>
+<script is:inline>
+  const settingsMenu = document.getElementById("settings-menu");
+  const settingsBtn = document.getElementById("settings-btn");
+  const settingsInd = document.getElementById("settings-ind");
+  const toggleSettingsMenu = () => {
+    if (settingsMenu.style.scale === "0") {
+      settingsMenu.style.scale = "1";
+      settingsInd.style.scale = "1";
+      return;
+    }
+    settingsMenu.style.scale = "0";
+    settingsInd.style.scale = "0";
+  };
+  settingsBtn.addEventListener("click", toggleSettingsMenu);
+</script>
+<style>
+  #settings-menu {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+  #settings-ind {
+    animation: hide-settings-ind 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+  @keyframes nav-shadown {
+    0% {
+      @apply dark:bg-gray-800/0 bg-white/0;
+    }
+    to {
+      @apply shadow-lg ring-1 backdrop-blur ring-white/10;
+    }
+  }
+  @keyframes hide-settings-ind {
+    0% {
+      @apply scale-100;
+    }
+    to {
+      @apply scale-0;
+    }
+  }
+</style>
