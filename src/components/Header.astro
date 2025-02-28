@@ -1,22 +1,28 @@
 ---
+import type { SectionTitles } from "@/interfaces/translation";
 import SettingsToggle from "./SettingsToggle.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 
+interface Props {
+  lang: string;
+  translation: SectionTitles;
+}
+
+const { lang, translation } = Astro.props;
 const navItems = [
   {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
+    title: translation.professionalExperience,
+    label: "experience",
+    url: "#experience",
   },
   {
-    title: "Tecnologias",
-    label: "tecnologias",
-    url: "/#tecnologias",
+    title: translation.technologies,
+    label: "technologies",
+    url: "#technologies",
   },
   {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
+    title: translation.aboutMe,
+    label: "about",
+    url: "#about",
   },
 ];
 ---
@@ -39,7 +45,7 @@ const navItems = [
           </a>
         ))
       }
-      <SettingsToggle />
+      <SettingsToggle lang={lang} />
     </div>
   </nav>
 </header>
@@ -97,12 +103,12 @@ const navItems = [
   }
 
   nav {
-    @apply dark:bg-gray-800/90 bg-white/50;
+    @apply dark:bg-zinc-800/90 bg-white/50;
   }
 
   @keyframes nav-shadown {
     0% {
-      @apply dark:bg-gray-800/0 bg-white/0;
+      @apply dark:bg-zinc-800/0 bg-white/0;
     }
     to {
       @apply shadow-lg ring-1 backdrop-blur ring-white/10;

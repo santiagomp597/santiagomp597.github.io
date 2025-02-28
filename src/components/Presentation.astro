@@ -6,32 +6,40 @@ import SocialPill from "@/components/SocialPill.astro";
 import Download from "./icons/Download.astro";
 import { Image } from "astro:assets";
 import avatarImage from "../assets/avatar.png";
+import type { Presentation } from "@/interfaces/translation";
+
+interface Props {
+  lang: string;
+  textItems: Presentation;
+}
+
+const { lang, textItems } = Astro.props;
 ---
 
-<div class="max-w-xl">
+<div class="max-w-2xl">
   <div class="flex gap-4 mb-4 items-center">
     <div class="w-24 h-24 flex items-center justify-center">
       <Image class="w-full h-auto" src={avatarImage} alt={personalImageAlt} />
     </div>
     <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">
-      Hola!, soy Santiago Murillo
+      {textItems.greeting}
     </h1>
   </div>
-  <p class="mt-6 text-xl text-gray-800 dark:text-gray-300">
-    +8 años de experiencia en desarrollo de software
-    <strong class="font-semibold text-blue-500 dark:text-green-400">
-      Ingeniero de Software y Desarrollador Web Full Stack
-    </strong>
-    Apasionado por la innovacion en experiencia de usuario
-  </p>
+  <div
+  class="[&>p]:mt-6 [&>p]:text-xl [&>p]:text-gray-800 dark:[&>p]:text-gray-300   [&>p>strong]:text-blue-500 dark:[&>p>strong]:text-green-400 [&>p>strong]:font-semibold text-pretty"
+  set:html={textItems.subtitle}
+/>
   <nav class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
     <SocialPill href={linkedInUrl}>
       <LinkedInIcon class="size-4" />
-      LinkedIn
+      {textItems.linkedIn}
     </SocialPill>
-    <SocialPill href="/cv-smp.pdf" download="CV - Santiago Murillo.pdf">
+    <SocialPill
+      href=`/cv-smp-${lang}.pdf`
+      download=`CV - Santiago Murillo (${lang.toLocaleUpperCase()}).pdf`
+    >
       <Download class="size-4" />
-      Descargar CV
+      {textItems.cvDownload}
     </SocialPill>
   </nav>
 </div>

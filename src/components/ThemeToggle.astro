@@ -14,38 +14,37 @@ const { class: className } = Astro.props;
     class="theme-toggle-icon size-5 hover:scale-125 transition-all"
   />
 </div>
+
 <script is:inline>
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-  const themeToggleBtn = document.getElementById("theme-toggle-container");
+  (function () {
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const themeToggleBtn = document.getElementById("theme-toggle-container");
 
-  const getTheme = () => localStorage.getItem("theme") || "dark";
+    const getTheme = () =>
+      localStorage.getItem("theme") || (matchMedia.matches ? "dark" : "light");
 
-  const applyTheme = () => {
-    const theme = getTheme();
-    const isDark = theme === "dark" || (theme === "dark" && matchMedia.matches);
+    const applyTheme = () => {
+      const theme = getTheme();
+      const isDark = theme === "dark";
 
-    document.documentElement.classList.toggle("dark", isDark);
-    document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
-      el.style.scale = el.id === theme ? "1" : "0";
-      if (el.id === theme) {
-        el.classList.remove("hidden");
-        el.classList.add("visible");
-      } else {
-        el.classList.remove("visible");
-        el.classList.add("hidden");
-      }
-      el.classList.add(el.id === theme ? "visible" : "hidden");
+      document.documentElement.classList.toggle("dark", isDark);
+
+      document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
+        const isCurrent = el.id === theme;
+        el.style.scale = isCurrent ? "1" : "0";
+        el.classList.toggle("hidden", !isCurrent);
+        el.classList.toggle("visible", isCurrent);
+      });
+    };
+
+    themeToggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      localStorage.setItem("theme", getTheme() === "dark" ? "light" : "dark");
+      applyTheme();
     });
-  };
-  themeToggleBtn.addEventListener("click", (e) => {
-    const theme = getTheme();
-    const isDark = theme === "dark" || (theme === "dark" && matchMedia.matches);
-    e.stopPropagation();
-    localStorage.setItem("theme", isDark ? "light" : "dark");
-    applyTheme();
-  });
 
-  matchMedia.addEventListener("change", applyTheme);
-  document.addEventListener("astro:after-swap", applyTheme);
-  applyTheme();
+    matchMedia.addEventListener("change", applyTheme);
+    document.addEventListener("astro:after-swap", applyTheme);
+    applyTheme();
+  })();
 </script>

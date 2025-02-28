@@ -2,7 +2,14 @@
 import SettingsIcon from "./icons/Settings.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguageToggle from "./LanguageToggle.astro";
-const { class: className } = Astro.props;
+import type { Translation } from "@/interfaces/translation";
+const {} = Astro.props;
+interface Props {
+  class?: string;
+  lang: string;
+}
+
+const { class: className, lang } = Astro.props;
 ---
 
 <div class={`${className} relative ml-1 mr-1`}>
@@ -15,14 +22,14 @@ const { class: className } = Astro.props;
   <div id="settings-ind" class="text-center pt-0.5 absolute left-2">I</div>
   <div
     id="settings-menu"
-    class="pt-0.5 dark:bg-gray-800/90 bg-white/50; bg-white rounded-lg absolute top-9 -right-2 transition-all"
+    class="pt-0.5 dark:bg-zinc-800/90 bg-white/50; bg-white rounded-lg absolute top-9 -right-2 transition-all"
   >
     <ul class="list-none">
       <li class="m-2">
         <ThemeToggle />
       </li>
       <li class="m-2">
-        <LanguageToggle />
+        <LanguageToggle lang={lang} />
       </li>
     </ul>
   </div>
@@ -41,6 +48,7 @@ const { class: className } = Astro.props;
     settingsInd.style.scale = "0";
   };
   settingsBtn.addEventListener("click", toggleSettingsMenu);
+  toggleSettingsMenu();
 </script>
 <style>
   #settings-menu {
@@ -55,7 +63,7 @@ const { class: className } = Astro.props;
   }
   @keyframes nav-shadown {
     0% {
-      @apply dark:bg-gray-800/0 bg-white/0;
+      @apply dark:bg-zinc-800/0 bg-white/0;
     }
     to {
       @apply shadow-lg ring-1 backdrop-blur ring-white/10;

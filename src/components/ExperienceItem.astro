@@ -1,14 +1,18 @@
 ---
+import type { ExperienceItemI } from '@/interfaces/translation';
 import { Image } from 'astro:assets';
+import kargoImage from "../assets/kargo.png";
+import sostereoImage from "../assets/sostereo.png";
+import banlineaImage from "../assets/banlinea.png";
+import itoSoftwareImage from "../assets/ito-software.png";
 
-interface Props {
-  title: string;
-  company: string;
-  companyDescription: string;
-  jobDescription: string;
-  image: ImageMetadata;
-  imageAlt: string;
-  date: string;
+const imageMap: Record<string, ImageMetadata> = {
+  kargoImage: kargoImage,
+  sostereoImage: sostereoImage,
+  banlineaImage: banlineaImage,
+  itoSoftwareImage: itoSoftwareImage,
+};
+interface Props extends ExperienceItemI {
 }
 
 const {
@@ -20,6 +24,10 @@ const {
   imageAlt,
   date,
 } = Astro.props;
+
+const getImage = (imgId:string) => {
+  return imageMap[imgId];
+}
 ---
 
 <div
@@ -52,7 +60,7 @@ const {
     <div class="pt-5 shadow-2xl">
       <Image
         class="transition-transform duration-300 ease-in-out hover:scale-105 w-full h-40 md:h-80 object-cover object-top rounded-lg"
-        src={image}
+        src={getImage(image)}
         alt={imageAlt}
       />
     </div>

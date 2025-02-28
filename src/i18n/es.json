@@ -1,10 +1,127 @@
 {
+  "seo": {
+    "title": "Porfolio de Santiago Murillo - Ingeniero y Desarrollador Web con +8 años de experiencia",
+    "description": "Al servicio para tus necesidades de desarrollo web."
+  },
   "presentation": {
     "greeting": "Hola!, soy Santiago Murillo",
-    "subtitle": "+8 años de experiencia en desarrollo de software",
-    "position": "Ingeniero de Software y Desarrollador Web Full Stack",
-    "footNote": "Apasionado por la innovacion en experiencia de usuario",
+    "subtitle": "<p>Más de 8 años de experiencia en desarrollo de software <br/><strong>Ingeniero de Software y Desarrollador Web Full Stack</strong><br/> Apasionado por la innovación en experiencia de usuario</p>",
     "linkedIn": "LinkedIn",
     "cvDownload": "Descargar CV"
-  }
+  },
+  "sectionTittles": {
+    "professionalExperience": "Experiencia",
+    "technologies": "Tecnologías",
+    "aboutMe": "Sobre mí"
+  },
+  "experienceItems": [
+    {
+      "date": "Febrero 2021 - Actualidad",
+      "title": "Senior Web UI Developer",
+      "company": "Globant - Kargo Inc.",
+      "companyDescription": "Desarrollo de soluciones digitales innovadoras para optimizar el ecosistema de publicidad online.",
+      "image": "kargoImage",
+      "imageAlt": "Logo de Kargo Inc.",
+      "jobDescription": "<p>Desarrollo y optimización de plataformas de uso interno para la gestión de anuncios digitales con <strong>Angular, ReactJS y NodeJS. </strong>Asesoría en el proceso de <strong>planeación y definición de flujos de trabajo</strong> para nuevas funcionalidades.</p>"
+    },
+    {
+      "date": "Noviembre 2018 - Febrero 2021",
+      "title": "Front End Developer",
+      "company": "Sostereo",
+      "companyDescription": "Plataforma de curación y licenciamiento de música para marcas y creadores de contenido.",
+      "image": "sostereoImage",
+      "imageAlt": "Logo de SoStereo",
+      "jobDescription": "<p>Desarrollo y mantenimiento del sitio web de <strong>SoStereo</strong>, una plataforma de descubrimiento y licenciamiento de música. Implementación de nuevas funcionalidades y optimización del rendimiento utilizando <strong>Angular</strong>, asegurando una experiencia fluida para los usuarios.</p>"
+    },
+    {
+      "date": "Febrero 2018 - Octubre 2018",
+      "title": "Front End Developer",
+      "company": "Banlinea",
+      "companyDescription": "Startup enfocada en soluciones digitales innovadoras para el sector bancario.",
+      "image": "banlineaImage",
+      "imageAlt": "Logo de Banlinea",
+      "jobDescription": "<p>Desarrollo de una red social interna para <strong>Experian - DataCrédito</strong>, utilizando <strong>Angular 5</strong>. Implementación de interfaces interactivas para mejorar la comunicación y análisis de datos dentro del ecosistema financiero digital.</p>"
+    },
+    {
+      "date": "Agosto 2017 - Febrero 2018",
+      "title": "Full Stack Developer",
+      "company": "ITO Software",
+      "companyDescription": "Empresa especializada en desarrollo de software a medida y servicios de outsourcing tecnológico.",
+      "image": "itoSoftwareImage",
+      "imageAlt": "Logo de ITO Software",
+      "jobDescription": "<p>Diseño y desarrollo de una aplicación web para la gestión de inventarios y reporte de novedades de la <strong>Policía Nacional</strong>. Implementación de una interfaz intuitiva y optimización de flujos de trabajo para mejorar la gestión y trazabilidad de los reportes operacionales.</p>"
+    }
+  ],
+  "technologyItems": [
+    {
+      "id": "react",
+      "cardClass": "lg:col-span-2 lg:row-span-2",
+      "descriptionItems": [
+        "Componentización",
+        "Manejo de estado",
+        "Custom hooks"
+      ]
+    },
+    {
+      "id": "angular",
+      "cardClass": "lg:row-span-2",
+      "descriptionItems": [
+        "Modularidad",
+        "Reactive Forms",
+        "Directivas y Pipes"
+      ]
+    },
+    {
+      "id": "javascript",
+      "cardClass": "col-span-2",
+      "descriptionItems": [
+        "ES6+ Features",
+        "Promesas, Async/Await",
+        "Closures y Scope"
+      ]
+    },
+    {
+      "id": "typescript",
+      "cardClass": "col-span-2",
+      "descriptionItems": [
+        "Tipado estático",
+        "Interfaces y Genéricos",
+        "Decoradores y Modificadores"
+      ]
+    },
+    {
+      "id": "git",
+      "cardClass": "",
+      "descriptionItems": ["Git flow", "Rebase vs Merge", "GitHub Actions"]
+    },
+    {
+      "id": "nodejs",
+      "cardClass": "lg:col-span-2",
+      "descriptionItems": [
+        "Express.js",
+        "Manejo de eventos",
+        "Streams y Workers"
+      ]
+    },
+    {
+      "id": "mongodb",
+      "cardClass": "",
+      "descriptionItems": [
+        "Modelado NoSQL",
+        "Consultas avanzadas",
+        "Commit y Rollback"
+      ]
+    },
+    {
+      "id": "css",
+      "cardClass": "",
+      "descriptionItems": [
+        "Flexbox y Grid",
+        "Preprocesadores",
+        "Diseño responsivo"
+      ]
+    }
+  ],
+  "textAboutMe": "<p> Desarrollador de Software con nivel de inglés <strong>B2</strong> profesional,con sólida experiencia en<strong>Front End y Back End</strong>, especializado en <strong>ReactJS, Angular y Node.js</strong>. Enfoque en el diseño y desarrollo de aplicaciones escalables, siguiendo buenas prácticas y arquitecturas modernas.</p><p>Poseo conocimiento en <strong>bases de datos relacionales y NoSQL</strong>, optimización de rendimiento y desarrollo ágil bajo metodologías <strong>Scrum y Kanban</strong>. Manejo de <strong>GIT y control de versiones</strong>, asegurando flujos de trabajo eficientes y colaborativos.</p><p>Estoy buscando oportunidades para seguir creciendo profesionalmente,asumir retos técnicos desafiantes y tener la opción de <strong>liderar equipos de desarrollo</strong> en proyectos innovadores.</p>",
+  "footerNote": "Mira el código fuente!"
 }
