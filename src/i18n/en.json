@@ -1,0 +1,119 @@
+{
+  "seo": {
+    "title": "Santiago Murillo's portfolio - Software Engineer & Web Developer with 8+ years of experience.",
+    "description": "Hire me for your web development necessities"
+  },
+  "presentation": {
+    "greeting": "Hello!, I am Santiago Murillo",
+    "subtitle": "<p>+8 years of experience in software development <br/><strong>Software Engineer and Full Stack Web Developer</strong><br/> Passionate about innovation in user experience</p>",
+    "linkedIn": "LinkedIn",
+    "cvDownload": "Download CV"
+  },
+  "sectionTittles": {
+    "professionalExperience": "Experience",
+    "technologies": "Technologies",
+    "aboutMe": "About me"
+  },
+  "experienceItems": [
+    {
+      "date": "February 2021 - Present",
+      "title": "Senior Web UI Developer",
+      "company": "Globant - Kargo Inc.",
+      "companyDescription": "Development of innovative digital solutions to optimize the online advertising ecosystem.",
+      "image": "kargoImage",
+      "imageAlt": "Kargo Inc. Logo",
+      "jobDescription": "<p>Development and optimization of internal platforms for managing digital ads using <strong>Angular, ReactJS, and NodeJS.</strong> Consulting in the <strong>planning and workflow definition</strong> process for new features.</p>"
+    },
+    {
+      "date": "November 2018 - February 2021",
+      "title": "Front End Developer",
+      "company": "Sostereo",
+      "companyDescription": "Music curation and licensing platform for brands and content creators.",
+      "image": "sostereoImage",
+      "imageAlt": "SoStereo Logo",
+      "jobDescription": "<p>Development and maintenance of the <strong>SoStereo</strong> website, a music discovery and licensing platform. Implementation of new features and performance optimization using <strong>Angular</strong>, ensuring a smooth user experience.</p>"
+    },
+    {
+      "date": "February 2018 - October 2018",
+      "title": "Front End Developer",
+      "company": "Banlinea",
+      "companyDescription": "Startup focused on innovative digital solutions for the banking sector.",
+      "image": "banlineaImage",
+      "imageAlt": "Banlinea Logo",
+      "jobDescription": "<p>Development of an internal social network for <strong>Experian - DataCrédito</strong> using <strong>Angular 5</strong>. Implementation of interactive interfaces to enhance communication and data analysis within the digital financial ecosystem.</p>"
+    },
+    {
+      "date": "August 2017 - February 2018",
+      "title": "Full Stack Developer",
+      "company": "ITO Software",
+      "companyDescription": "Company specialized in custom software development and technology outsourcing services.",
+      "image": "itoSoftwareImage",
+      "imageAlt": "ITO Software Logo",
+      "jobDescription": "<p>Design and development of a web application for inventory management and incident reporting for the <strong>National Police</strong>. Implementation of an intuitive interface and optimization of workflows to improve the management and traceability of operational reports.</p>"
+    }
+  ],
+  "technologyItems": [
+    {
+      "id": "react",
+      "cardClass": "lg:col-span-2 lg:row-span-2",
+      "descriptionItems": [
+        "Componentization",
+        "State management",
+        "Custom hooks"
+      ]
+    },
+    {
+      "id": "angular",
+      "cardClass": "lg:row-span-2",
+      "descriptionItems": ["Modularity", "Reactive Forms", "Directives & Pipes"]
+    },
+    {
+      "id": "javascript",
+      "cardClass": "col-span-2",
+      "descriptionItems": [
+        "ES6+ Features",
+        "Promises, Async/Await",
+        "Closures & Scope"
+      ]
+    },
+    {
+      "id": "typescript",
+      "cardClass": "col-span-2",
+      "descriptionItems": [
+        "Static typing",
+        "Interfaces & Generics",
+        "Decorators & Modifiers"
+      ]
+    },
+    {
+      "id": "git",
+      "cardClass": "",
+      "descriptionItems": ["Git flow", "Rebase vs Merge", "GitHub Actions"]
+    },
+    {
+      "id": "nodejs",
+      "cardClass": "lg:col-span-2",
+      "descriptionItems": ["Express.js", "Event handling", "Streams & Workers"]
+    },
+    {
+      "id": "mongodb",
+      "cardClass": "",
+      "descriptionItems": [
+        "NoSQL Modeling",
+        "Advanced queries",
+        "Commit & Rollback"
+      ]
+    },
+    {
+      "id": "css",
+      "cardClass": "",
+      "descriptionItems": [
+        "Flexbox & Grid",
+        "Preprocessors",
+        "Responsive design"
+      ]
+    }
+  ],
+  "textAboutMe": "<p> Software Developer with professional <strong>B2</strong> English level, with solid experience in <strong>Front End & Back End</strong>, specialized in <strong>ReactJS, Angular, and Node.js</strong>. Focused on designing and developing scalable applications, following best practices and modern architectures.</p><p>I have knowledge of <strong>relational and NoSQL databases</strong>, performance optimization and agile development under <strong>Scrum & Kanban</strong> methodologies. Proficient in <strong>GIT and version control</strong>, ensuring efficient and collaborative workflows.</p><p>I am looking for opportunities to continue growing professionally, take on complex technical challenges, and have the chance to <strong>lead development teams</strong> in innovative projects.</p>",
+  "footerNote": "Take a look at the source code!"
+}

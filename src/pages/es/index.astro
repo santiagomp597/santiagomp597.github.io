@@ -1,0 +1,56 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import ESTranslations from "../../i18n/es.json";
+
+import type { Translation } from "../../interfaces/translation";
+
+const translations: Translation = ESTranslations;
+import AboutMe from "@/components/AboutMe.astro";
+import Briefcase from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import Experience from "@/components/Experience.astro";
+import ProfileCheck from "@/components/icons/ProfileCheck.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import Presentation from "@/components/Presentation.astro";
+import TitleSection from "@/components/TitleSection.astro";
+import Technologies from "@/components/Technologies.astro";
+
+const language = "es";
+---
+
+<Layout
+  translation={translations}
+  lang={language}
+  title={translations.seo.title}
+  description={translations.seo.description}
+>
+  <main class="px-4">
+    <SectionContainer class="py-20 md:py-36">
+      <Presentation lang={language} textItems={translations.presentation} />
+    </SectionContainer>
+    <div class="space-y-24">
+      <SectionContainer id="experience">
+        <TitleSection>
+          <Briefcase class="size-8" />
+          {translations.sectionTittles.professionalExperience}
+        </TitleSection>
+        <Experience experienceItems={translations.experienceItems} />
+      </SectionContainer>
+      <SectionContainer id="technologies" class="pb-20">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          {translations.sectionTittles.technologies}
+        </TitleSection>
+        <Technologies technologyItems={translations.technologyItems} />
+      </SectionContainer>
+      <SectionContainer id="about">
+        <TitleSection>
+          <ProfileCheck class="size-8" />
+          {translations.sectionTittles.aboutMe}
+        </TitleSection>
+        <AboutMe description={translations.textAboutMe} />
+      </SectionContainer>
+    </div>
+  </main>
+</Layout>

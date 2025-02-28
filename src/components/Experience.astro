@@ -1,69 +1,19 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-import kargoImage from "../assets/kargo.png";
-import sostereoImage from "../assets/sostereo.png";
-import banlineaImage from "../assets/banlinea.png";
-import itoSoftwareImage from "../assets/ito-software.png";
-const EXPERIENCE = [
-  {
-    date: "Febrero 2021 - Actualidad",
-    title: "Senior Web UI Developer",
-    company: "Globant - Kargo Inc.",
-    companyDescription:
-      "Desarrollo de soluciones digitales innovadoras para optimizar el ecosistema de publicidad online.",
-    image: kargoImage,
-    imageAlt: "Logo de Kargo Inc.",
-    jobDescription: `<p>
-    Desarrollo y optimización de plataformas de uso interno para la gestión de anuncios digitales con <strong>Angular, ReactJS y NodeJS. </strong>
-    Asesoria en el proceso de <strong>planeacion y definicion de flujos de trabajo</strong> para nuevas funcionalidades.
-    </p>`,
-  },
-  {
-    date: "Noviembre 2018 - Febrero 2021",
-    title: "Front End Developer",
-    company: "Sostereo",
-    companyDescription:
-      "Plataforma de curación y licenciamiento de música para marcas y creadores de contenido.",
-    image: sostereoImage,
-    imageAlt: "Logo de SoStereo",
-    jobDescription: `<p>
-    Desarrollo y mantenimiento del sitio web de <strong>SoStereo</strong>, una plataforma de descubrimiento y licenciamiento de música. 
-    Implementación de nuevas funcionalidades y optimización del rendimiento utilizando <strong>Angular</strong>, asegurando una experiencia fluida para los usuarios.</p>`,
-  },
-  {
-    date: "Febrero 2018 - Octubre 2018",
-    title: "Front End Developer",
-    company: "Banlinea",
-    companyDescription:
-      "Startup enfocada en soluciones digitales innovadoras para el sector bancario.",
-    image: banlineaImage,
-    imageAlt: "Logo de Banlinea",
-    jobDescription: `<p>
-    Desarrollo de una red social interna para <strong>Experian - DataCrédito</strong>, utilizando <strong>Angular 5</strong>. 
-    Implementación de interfaces interactivas para mejorar la comunicación y análisis de datos dentro del ecosistema financiero digital.
-    </p>`,
-  },
-  {
-    date: "Agosto 2017 - Febrero 2018",
-    title: "Full Stack Developer",
-    company: "ITO Software",
-    companyDescription:
-      "Empresa especializada en desarrollo de software a medida y servicios de outsourcing tecnológico.",
-    image: itoSoftwareImage,
-    imageAlt: "Logo de ITO Software",
-    jobDescription: `<p>
-    Diseño y desarrollo de una aplicación web para la gestión de inventarios y reporte de novedades de la <strong>Policía Nacional </strong>. 
-    Implementación de una interfaz intuitiva y optimización de flujos de trabajo para mejorar la gestión y trazabilidad de los reportes operacionales.
-    </p>`,
-  },
-];
+import type { ExperienceItemI } from "@/interfaces/translation";
+
+interface Props {
+  experienceItems: ExperienceItemI[];
+}
+
+const { experienceItems } = Astro.props;
 ---
 
-<ol class="relative mt-16">
+<ol class="relative mt-5">
   {
-    EXPERIENCE.map((experience) => (
+    experienceItems.map((experienceItem) => (
       <li>
-        <ExperienceItem {...experience} />
+        <ExperienceItem {...experienceItem} />
       </li>
     ))
   }

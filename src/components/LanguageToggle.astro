@@ -1,0 +1,18 @@
+---
+import LanguageEnIcon from "./icons/LanguageEn.astro";
+import LanguageEsIcon from "./icons/LanguageEs.astro";
+
+const { lang } = Astro.props;
+const newLang = lang === "en" ? "es" : "en";
+---
+
+<a href={`/${newLang}/`} id="lang-toggle-container" class="appearance-none">
+  <LanguageEnIcon
+    id="en"
+    class={`${lang === "en" ? "hidden" : "visible"} lang-toggle-icon size-5 hover:scale-125 transition-all`}
+  />
+  <LanguageEsIcon
+    id="es"
+    class={`${lang === "es" ? "hidden" : "visible"} lang-toggle-icon size-5 hover:scale-125 transition-all`}
+  />
+</a>

@@ -1,21 +1,28 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
+import type { SectionTitles } from "@/interfaces/translation";
+import SettingsToggle from "./SettingsToggle.astro";
 
+interface Props {
+  lang: string;
+  translation: SectionTitles;
+}
+
+const { lang, translation } = Astro.props;
 const navItems = [
   {
-    title: "Experiencia",
-    label: "experiencia",
-    url: "/#experiencia",
+    title: translation.professionalExperience,
+    label: "experience",
+    url: "#experience",
   },
   {
-    title: "Tecnologias",
-    label: "tecnologias",
-    url: "/#tecnologias",
+    title: translation.technologies,
+    label: "technologies",
+    url: "#technologies",
   },
   {
-    title: "Sobre mí",
-    label: "sobre-mi",
-    url: "/#sobre-mi",
+    title: translation.aboutMe,
+    label: "about",
+    url: "#about",
   },
 ];
 ---
@@ -38,7 +45,7 @@ const navItems = [
           </a>
         ))
       }
-      <ThemeToggle />
+      <SettingsToggle lang={lang} />
     </div>
   </nav>
 </header>
@@ -46,7 +53,6 @@ const navItems = [
 <script>
   const sections = document.querySelectorAll("section");
   const navItems = document.querySelectorAll("header nav div a");
-  console.log("AAA", navItems);
   const callback = (entries: any[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -97,12 +103,12 @@ const navItems = [
   }
 
   nav {
-    @apply dark:bg-gray-800/90 bg-white/50;
+    @apply dark:bg-zinc-800/90 bg-white/50;
   }
 
   @keyframes nav-shadown {
     0% {
-      @apply dark:bg-gray-800/0 bg-white/0;
+      @apply dark:bg-zinc-800/0 bg-white/0;
     }
     to {
       @apply shadow-lg ring-1 backdrop-blur ring-white/10;

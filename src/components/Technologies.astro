@@ -1,112 +1,70 @@
 ---
 import AngularIcon from "./icons/Angular.astro";
 import TypescriptIcon from "./icons/Typescript.astro";
-import JavascriptIcon from "./icons/Javascript.astro";
 import ReactIcon from "./icons/React.astro";
 import GitIcon from "./icons/Git.astro";
 import CssIcon from "./icons/Css.astro";
 import Card from "./Card.astro";
 import MongoDBIcon from "./icons/MongoDB.astro";
 import NodeJSIcon from "./icons/NodeJS.astro";
+import JavascriptIcon from "./icons/Javascript.astro";
+import type { TechnologyItem } from "@/interfaces/translation";
 
-const techItems = [
-  {
-    id: "react",
-    cardClass: "lg:col-span-2 lg:row-span-2",
-    icon: ReactIcon,
-    descriptionItems: ["Componentización", "Manejo de estado", "Custom hooks"],
-  },
-  {
-    id: "angular",
-    cardClass: "lg:row-span-2",
-    icon: AngularIcon,
-    descriptionItems: ["Modularidad", "Reactive Forms", "Directivas y Pipes"],
-  },
-  {
-    id: "javascript",
-    cardClass: "col-span-2",
-    icon: JavascriptIcon,
-    descriptionItems: [
-      "ES6+ Features",
-      "Promesas, Async/Await",
-      "Closures y Scope",
-    ],
-  },
-  {
-    id: "typescript",
-    cardClass: "col-span-2",
-    icon: TypescriptIcon,
-    descriptionItems: [
-      "Tipado estático",
-      "Interfaces y Genéricos",
-      "Decoradores y Modificadores",
-    ],
-  },
-  {
-    id: "git",
-    cardClass: "",
-    icon: GitIcon,
-    descriptionItems: ["Git flow", "Rebase vs Merge", "GitHub Actions"],
-  },
-  {
-    id: "nodejs",
-    cardClass: "lg:col-span-2",
-    icon: NodeJSIcon,
-    descriptionItems: ["Express.js", "Manejo de eventos", "Streams y Workers"],
-  },
-  {
-    id: "mongodb",
-    cardClass: "",
-    icon: MongoDBIcon,
-    descriptionItems: [
-      "Modelado NoSQL",
-      "Consultas avanzadas",
-      "Commit y Rollback",
-    ],
-  },
-  {
-    id: "css",
-    cardClass: "",
-    icon: CssIcon,
-    descriptionItems: [
-      "Flexbox y Grid",
-      "Preprocesadores",
-      "Diseño responsivo",
-    ],
-  },
-];
+const iconMap: Record<string, any> = {
+  react: ReactIcon,
+  angular: AngularIcon,
+  javascript: JavascriptIcon,
+  typescript: TypescriptIcon,
+  git: GitIcon,
+  nodejs: NodeJSIcon,
+  mongodb: MongoDBIcon,
+  css: CssIcon,
+};
+
+interface Props {
+  technologyItems: TechnologyItem[];
+}
+
+const { technologyItems } = Astro.props;
+
+const getTechnologyIcon = (techId: string): any => iconMap[techId];
 ---
 
-<div class="flex flex-col gap-y-16">
+<div class="flex flex-col mt-5">
   <article
     class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0"
   >
     <div class="w-full">
       <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
         {
-          techItems.map((item: any) => (
-            <Card class={item.cardClass}>
-              <div
-                id={item.id}
-                class="card-content flex align-middle w-full h-full my-6"
-              >
-                <div class="flip-card w-full h-20 m-auto">
-                  <div class="flip-card-inner">
-                    <div class="flip-card-front flex align-middle">
-                      <item.icon class="w-16 h-16 m-auto" />
-                    </div>
-                    <div class="flip-card-back">
-                      {item.descriptionItems?.map((description: string) => (
-                        <p class="text-gray-700 dark:text-gray-300">
-                          {description}
-                        </p>
-                      ))}
+          technologyItems.map((tech: TechnologyItem) => {
+            const IconComponent = getTechnologyIcon(tech.id);
+            return (
+              <Card class={tech.cardClass}>
+                <div
+                  id={tech.id}
+                  class="card-content flex align-middle w-full h-full py-10"
+                >
+                  <div class="flip-card w-full h-20 m-auto">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front flex align-middle">
+                        {IconComponent && (
+                          <IconComponent class="w-16 h-16 m-auto" />
+                        )}
+                      </div>
+                      <div class="flip-card-back">
+                        {tech.descriptionItems?.map((description: string) => (
+                          <p class="text-gray-700 dark:text-gray-300">
+                            {description}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Card>
-          ))
+              </Card>
+            );
+          })
         }
       </div>
     </div>

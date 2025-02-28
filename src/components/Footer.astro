@@ -1,5 +1,10 @@
 ---
 import GitHub from "./icons/GitHub.astro";
+
+interface Props {
+  translation: string;
+}
+const { translation } = Astro.props;
 ---
 
 <footer
@@ -12,8 +17,12 @@ import GitHub from "./icons/GitHub.astro";
       class="text-sm m-auto text-zinc-800/90 dark:text-zinc-200/90 flex flex-row items-center"
     >
       <GitHub />
-      <a href="https://github.com/santiagomp597/santiagomp597.github.io" class="hover:underline mx-1">
-        Mira el codigo fuente!
+      <a
+        href="https://github.com/santiagomp597/santiagomp597.github.io"
+        target="_blank"
+        class="hover:underline mx-1"
+      >
+        {translation}
       </a>
     </span>
   </div>
