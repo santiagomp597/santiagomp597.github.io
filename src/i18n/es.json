@@ -55,7 +55,6 @@
   "technologyItems": [
     {
       "id": "react",
-      "cardClass": "lg:col-span-2 lg:row-span-2",
       "descriptionItems": [
         "Componentización",
         "Manejo de estado",
@@ -64,7 +63,6 @@
     },
     {
       "id": "angular",
-      "cardClass": "lg:row-span-2",
       "descriptionItems": [
         "Modularidad",
         "Reactive Forms",
@@ -73,7 +71,6 @@
     },
     {
       "id": "javascript",
-      "cardClass": "col-span-2",
       "descriptionItems": [
         "ES6+ Features",
         "Promesas, Async/Await",
@@ -82,7 +79,6 @@
     },
     {
       "id": "typescript",
-      "cardClass": "col-span-2",
       "descriptionItems": [
         "Tipado estático",
         "Interfaces y Genéricos",
@@ -91,12 +87,10 @@
     },
     {
       "id": "git",
-      "cardClass": "",
       "descriptionItems": ["Git flow", "Rebase vs Merge", "GitHub Actions"]
     },
     {
       "id": "nodejs",
-      "cardClass": "lg:col-span-2",
       "descriptionItems": [
         "Express.js",
         "Manejo de eventos",
@@ -105,7 +99,6 @@
     },
     {
       "id": "mongodb",
-      "cardClass": "",
       "descriptionItems": [
         "Modelado NoSQL",
         "Consultas avanzadas",
@@ -114,7 +107,6 @@
     },
     {
       "id": "css",
-      "cardClass": "",
       "descriptionItems": [
         "Flexbox y Grid",
         "Preprocesadores",
