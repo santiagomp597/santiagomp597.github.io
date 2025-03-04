@@ -21,7 +21,6 @@ export interface ExperienceItemI {
 }
 export interface TechnologyItem {
   id: string;
-  cardClass: string;
   descriptionItems: string[];
 }
 

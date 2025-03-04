@@ -55,7 +55,6 @@
   "technologyItems": [
     {
       "id": "react",
-      "cardClass": "lg:col-span-2 lg:row-span-2",
       "descriptionItems": [
         "Componentization",
         "State management",
@@ -64,12 +63,10 @@
     },
     {
       "id": "angular",
-      "cardClass": "lg:row-span-2",
       "descriptionItems": ["Modularity", "Reactive Forms", "Directives & Pipes"]
     },
     {
       "id": "javascript",
-      "cardClass": "col-span-2",
       "descriptionItems": [
         "ES6+ Features",
         "Promises, Async/Await",
@@ -78,7 +75,6 @@
     },
     {
       "id": "typescript",
-      "cardClass": "col-span-2",
       "descriptionItems": [
         "Static typing",
         "Interfaces & Generics",
@@ -87,7 +83,6 @@
     },
     {
       "id": "git",
-      "cardClass": "",
       "descriptionItems": ["Git flow", "Rebase vs Merge", "GitHub Actions"]
     },
     {
@@ -97,7 +92,6 @@
     },
     {
       "id": "mongodb",
-      "cardClass": "",
       "descriptionItems": [
         "NoSQL Modeling",
         "Advanced queries",
@@ -106,7 +100,6 @@
     },
     {
       "id": "css",
-      "cardClass": "",
       "descriptionItems": [
         "Flexbox & Grid",
         "Preprocessors",

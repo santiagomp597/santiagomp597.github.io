@@ -10,15 +10,15 @@ import NodeJSIcon from "./icons/NodeJS.astro";
 import JavascriptIcon from "./icons/Javascript.astro";
 import type { TechnologyItem } from "@/interfaces/translation";
 
-const iconMap: Record<string, any> = {
-  react: ReactIcon,
-  angular: AngularIcon,
-  javascript: JavascriptIcon,
-  typescript: TypescriptIcon,
-  git: GitIcon,
-  nodejs: NodeJSIcon,
-  mongodb: MongoDBIcon,
-  css: CssIcon,
+const techUIMap: Record<string, any> = {
+  react: { icon: ReactIcon, classes: "lg:col-span-2 lg:row-span-2" },
+  angular: { icon: AngularIcon, classes: "lg:row-span-2" },
+  javascript: { icon: JavascriptIcon, classes: "col-span-2" },
+  typescript: { icon: TypescriptIcon, classes: "col-span-2" },
+  git: { icon: GitIcon, classes: "" },
+  nodejs: { icon: NodeJSIcon, classes: "lg:col-span-2" },
+  mongodb: { icon: MongoDBIcon, classes: "" },
+  css: { icon: CssIcon, classes: "" },
 };
 
 interface Props {
@@ -27,7 +27,8 @@ interface Props {
 
 const { technologyItems } = Astro.props;
 
-const getTechnologyIcon = (techId: string): any => iconMap[techId];
+const getTechnologyIcon = (techId: string): any => techUIMap[techId].icon;
+const getTechnologyClasses = (techId: string): any => techUIMap[techId].classes;
 ---
 
 <div class="flex flex-col mt-5">
@@ -40,7 +41,7 @@ const getTechnologyIcon = (techId: string): any => iconMap[techId];
           technologyItems.map((tech: TechnologyItem) => {
             const IconComponent = getTechnologyIcon(tech.id);
             return (
-              <Card class={tech.cardClass}>
+              <Card class={getTechnologyClasses(tech.id)}>
                 <div
                   id={tech.id}
                   class="card-content flex align-middle w-full h-full py-10"
