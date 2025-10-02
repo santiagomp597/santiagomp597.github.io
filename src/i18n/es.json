@@ -17,7 +17,7 @@
   },
   "snakeGameSection": {
     "message": "Ya que llegaste hasta el final, ¡diviértete un poco!",
-    "description": "Tómate un descanso y disfruta de este clásico juego de Snake, Usa las teclas WASD para controlar la serpiente."
+    "description": "<p>Tómate un descanso y disfruta de este clásico juego de Snake, Usa las teclas <strong>WASD</strong> en escritorio o <strong>desliza en el tablero</strong> si estas en un movil para controlar la serpiente.</p>"
   },
   "experienceItems": [
     {

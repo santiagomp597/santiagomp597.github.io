@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 interface Position {
   x: number;
@@ -20,6 +20,10 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
   const [gameStarted, setGameStarted] = useState(false);
   const [score, setScore] = useState(0);
   const [directionQueue, setDirectionQueue] = useState<Position[]>([]);
+  
+  // Touch handling refs
+  const gameAreaRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const generateFood = useCallback(() => {
     let newFood: Position;
@@ -41,6 +45,22 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
     setGameStarted(true);
     setDirectionQueue([]);
   };
+
+  const addDirectionToQueue = useCallback((newDirection: Position) => {
+    if (!gameStarted) return;
+    
+    setDirectionQueue(currentQueue => {
+      // Limit queue size to prevent excessive buffering
+      if (currentQueue.length < 3) {
+        // Check if the new direction is different from the last queued direction
+        const lastDirection = currentQueue[currentQueue.length - 1] || direction;
+        if (lastDirection.x !== newDirection.x || lastDirection.y !== newDirection.y) {
+          return [...currentQueue, newDirection];
+        }
+      }
+      return currentQueue;
+    });
+  }, [direction, gameStarted]);
 
   const moveSnake = useCallback(() => {
     if (gameOver || !gameStarted) return;
@@ -110,28 +130,66 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
       }
       
       if (newDirection) {
-        setDirectionQueue(currentQueue => {
-          // Limit queue size to prevent excessive buffering
-          if (currentQueue.length < 3) {
-            // Check if the new direction is different from the last queued direction
-            const lastDirection = currentQueue[currentQueue.length - 1] || direction;
-            if (lastDirection.x !== newDirection.x || lastDirection.y !== newDirection.y) {
-              return [...currentQueue, newDirection];
-            }
-          }
-          return currentQueue;
-        });
+        addDirectionToQueue(newDirection);
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [direction, gameStarted]);
+  }, [addDirectionToQueue]);
 
   useEffect(() => {
     const gameLoop = setInterval(moveSnake, 80);
     return () => clearInterval(gameLoop);
   }, [moveSnake]);
+
+  // Touch event handlers for mobile devices
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (!gameStarted) return;
+    
+    e.preventDefault(); // Prevent scrolling
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }, [gameStarted]);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (!gameStarted || !touchStartRef.current) return;
+    
+    e.preventDefault(); // Prevent scrolling
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+    
+    // Minimum swipe distance to register a swipe
+    const minSwipeDistance = 30;
+    
+    // Determine the primary direction of the swipe
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Horizontal swipe
+      if (Math.abs(deltaX) > minSwipeDistance) {
+        if (deltaX > 0) {
+          // Swipe right
+          if (direction.x !== -1) addDirectionToQueue({ x: 1, y: 0 });
+        } else {
+          // Swipe left
+          if (direction.x !== 1) addDirectionToQueue({ x: -1, y: 0 });
+        }
+      }
+    } else {
+      // Vertical swipe
+      if (Math.abs(deltaY) > minSwipeDistance) {
+        if (deltaY > 0) {
+          // Swipe down
+          if (direction.y !== -1) addDirectionToQueue({ x: 0, y: 1 });
+        } else {
+          // Swipe up
+          if (direction.y !== 1) addDirectionToQueue({ x: 0, y: -1 });
+        }
+      }
+    }
+    
+    touchStartRef.current = null;
+  }, [gameStarted, direction, addDirectionToQueue]);
 
   const startGame = () => {
     resetGame();
@@ -146,11 +204,14 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
       </div>
       
       <div
-        className="relative border-2 rounded-lg shadow-lg border-gray-600 dark:border-gray-800 bg-white dark:bg-gray-900"
+        ref={gameAreaRef}
+        className="relative border-2 rounded-lg shadow-lg border-gray-600 dark:border-gray-800 bg-white dark:bg-gray-900 touch-none"
         style={{
           width: width * cellSize,
           height: height * cellSize,
         }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {/* Snake */}
         {snake.map((segment, index) => (
