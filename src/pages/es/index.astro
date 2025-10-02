@@ -37,19 +37,19 @@ const language = "es";
         </TitleSection>
         <Experience experienceItems={translations.experienceItems} />
       </SectionContainer>
-      <SectionContainer id="technologies" class="pb-20">
-        <TitleSection>
-          <CodeIcon class="size-7" />
-          {translations.sectionTittles.technologies}
-        </TitleSection>
-        <Technologies technologyItems={translations.technologyItems} />
-      </SectionContainer>
       <SectionContainer id="about">
         <TitleSection>
           <ProfileCheck class="size-8" />
           {translations.sectionTittles.aboutMe}
         </TitleSection>
         <AboutMe description={translations.textAboutMe} />
+      </SectionContainer>
+      <SectionContainer id="technologies" class="pb-20">
+        <TitleSection>
+          <CodeIcon class="size-7" />
+          {translations.sectionTittles.technologies}
+        </TitleSection>
+        <Technologies technologyItems={translations.technologyItems} />
       </SectionContainer>
     </div>
   </main>

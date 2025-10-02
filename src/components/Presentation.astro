@@ -7,6 +7,7 @@ import Download from "./icons/Download.astro";
 import { Image } from "astro:assets";
 import avatarImage from "../assets/avatar.png";
 import type { Presentation } from "@/interfaces/translation";
+import Typewriter from "./react/Typewriter.tsx";
 
 interface Props {
   lang: string;
@@ -22,7 +23,7 @@ const { lang, textItems } = Astro.props;
       <Image class="w-full h-auto" src={avatarImage} alt={personalImageAlt} />
     </div>
     <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">
-      {textItems.greeting}
+      <Typewriter text={textItems.greeting} client:load />
     </h1>
   </div>
   <div
