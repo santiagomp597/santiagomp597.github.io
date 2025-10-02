@@ -9,10 +9,15 @@
     "linkedIn": "LinkedIn",
     "cvDownload": "Descargar CV"
   },
-  "sectionTittles": {
+  "sectionTitles": {
     "professionalExperience": "Experiencia",
     "technologies": "Tecnologías",
-    "aboutMe": "Sobre mí"
+    "aboutMe": "Sobre mí",
+    "gameTime": "Ahora, ¡a jugar!"
+  },
+  "snakeGameSection": {
+    "message": "Ya que llegaste hasta el final, ¡diviértete un poco!",
+    "description": "Tómate un descanso y disfruta de este clásico juego de Snake, Usa las teclas WASD para controlar la serpiente."
   },
   "experienceItems": [
     {

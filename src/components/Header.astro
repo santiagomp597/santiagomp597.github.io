@@ -91,13 +91,13 @@ const navItems = [
 
 <style>
   nav {
-    animation: nav-shadown 1s linear both;
+    animation: nav-shadow 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
   }
 
   .header-text {
-    animation: header-text-shadown 1s linear both;
+    animation: header-text-shadow 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 1000px;
   }
@@ -106,7 +106,7 @@ const navItems = [
     @apply dark:bg-zinc-800/90 bg-white/50;
   }
 
-  @keyframes nav-shadown {
+  @keyframes nav-shadow {
     0% {
       @apply dark:bg-zinc-800/0 bg-white/0;
     }
@@ -115,7 +115,7 @@ const navItems = [
     }
   }
 
-  @keyframes header-text-shadown {
+  @keyframes header-text-shadow {
     0% {
       opacity: 0;
     }

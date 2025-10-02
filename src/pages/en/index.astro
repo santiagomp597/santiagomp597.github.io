@@ -5,7 +5,7 @@ import ENTranslations from "../../i18n/en.json";
 
 import type { Translation } from "../../interfaces/translation";
 
-const translations: Translation = ENTranslations;
+const translation: Translation = ENTranslations;
 import AboutMe from "@/components/AboutMe.astro";
 import Briefcase from "@/components/icons/Briefcase.astro";
 import CodeIcon from "@/components/icons/Code.astro";
@@ -15,40 +15,49 @@ import SectionContainer from "@/components/SectionContainer.astro";
 import Presentation from "@/components/Presentation.astro";
 import TitleSection from "@/components/TitleSection.astro";
 import Technologies from "@/components/Technologies.astro";
+import Gamepad from "@/components/icons/Gamepad.astro";
+import Snake from "@/components/Snake.astro";
 const language = "en";
 ---
 
 <Layout
-  translation={translations}
+  translation={translation}
   lang={language}
-  title={translations.seo.title}
-  description={translations.seo.description}
+  title={translation.seo.title}
+  description={translation.seo.description}
 >
   <main class="px-4">
     <SectionContainer class="py-20 md:py-36">
-      <Presentation lang={language} textItems={translations.presentation} />
+      <Presentation lang={language} textItems={translation.presentation} />
     </SectionContainer>
     <div class="space-y-24">
       <SectionContainer id="experience">
         <TitleSection>
           <Briefcase class="size-8" />
-          {translations.sectionTittles.professionalExperience}
+          {translation.sectionTitles.professionalExperience}
         </TitleSection>
-        <Experience experienceItems={translations.experienceItems} />
+        <Experience experienceItems={translation.experienceItems} />
       </SectionContainer>
       <SectionContainer id="about">
         <TitleSection>
           <ProfileCheck class="size-8" />
-          {translations.sectionTittles.aboutMe}
+          {translation.sectionTitles.aboutMe}
         </TitleSection>
-        <AboutMe description={translations.textAboutMe} />
+        <AboutMe description={translation.textAboutMe} />
       </SectionContainer>
-            <SectionContainer id="technologies" class="pb-20">
+            <SectionContainer id="technologies">
         <TitleSection>
           <CodeIcon class="size-7" />
-          {translations.sectionTittles.technologies}
+          {translation.sectionTitles.technologies}
         </TitleSection>
-        <Technologies technologyItems={translations.technologyItems} />
+        <Technologies technologyItems={translation.technologyItems} />
+      </SectionContainer>
+      <SectionContainer id="fun-game" class="pb-10">
+        <TitleSection>
+          <Gamepad class="size-7" />
+          {translation.sectionTitles.gameTime}
+        </TitleSection>
+        <Snake lang={language} textItems={translation.snakeGameSection} />
       </SectionContainer>
     </div>
   </main>

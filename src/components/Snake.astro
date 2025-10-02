@@ -1,0 +1,23 @@
+---
+import SnakeGame from "./react/SnakeGame";
+import type { SnakeGameSection } from "../interfaces/translation";
+
+interface Props {
+  lang: "es" | "en";
+  textItems: SnakeGameSection;
+}
+
+const { lang, textItems } = Astro.props;
+---
+
+<div class="max-w-xl text-center mb-8 mx-auto">
+  <p class="text-xl text-gray-800 dark:text-gray-300 mb-2 font-semibold">
+    {textItems.message}
+  </p>
+  <p class="text-gray-600 dark:text-gray-400">
+    {textItems.description}
+  </p>
+</div>
+<div class="flex justify-center">
+  <SnakeGame lang={lang} client:load />
+</div>

@@ -8,9 +8,15 @@ export interface SectionTitles {
   professionalExperience: string;
   technologies: string;
   aboutMe: string;
+  gameTime: string;
 }
 
-export interface ExperienceItemI {
+export interface SnakeGameSection {
+  message: string;
+  description: string;
+}
+
+export interface ExperienceItem {
   date: string;
   title: string;
   company: string;
@@ -27,9 +33,10 @@ export interface TechnologyItem {
 export interface Translation {
   seo: { title: string; description: string };
   presentation: Presentation;
-  sectionTittles: SectionTitles;
-  experienceItems: ExperienceItemI[];
+  sectionTitles: SectionTitles;
+  experienceItems: ExperienceItem[];
   technologyItems: TechnologyItem[];
   textAboutMe: string;
+  snakeGameSection: SnakeGameSection;
   footerNote: string;
 }
