@@ -20,9 +20,9 @@ const { lang, textItems } = Astro.props;
 <div class="max-w-2xl">
   <div class="flex gap-4 mb-4 items-center">
     <div class="w-24 h-24 flex items-center justify-center">
-      <Image class="w-full h-auto" src={avatarImage} alt={personalImageAlt} />
+      <Image class="w-20 min-w-20 sm:w-full h-auto" src={avatarImage} alt={personalImageAlt} />
     </div>
-    <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white">
+    <h1 class="text-3xl sm:text-4xl w-72 sm:w-auto font-bold tracking-tight text-black dark:text-white">
       <Typewriter text={textItems.greeting} client:load />
     </h1>
   </div>
