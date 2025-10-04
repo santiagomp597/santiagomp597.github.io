@@ -139,34 +139,59 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
   }, [addDirectionToQueue]);
 
   useEffect(() => {
-    const gameLoop = setInterval(moveSnake, 80);
+    // Slightly slower game speed for better mobile experience
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const gameSpeed = isMobile ? 120 : 80;
+    const gameLoop = setInterval(moveSnake, gameSpeed);
     return () => clearInterval(gameLoop);
   }, [moveSnake]);
 
-  // Touch event handlers for mobile devices
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    if (!gameStarted) return;
-    
-    e.preventDefault(); // Prevent scrolling
-    const touch = e.touches[0];
-    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
-  }, [gameStarted]);
+  // Mobile touch handling with native DOM events
+  useEffect(() => {
+    const gameArea = gameAreaRef.current;
+    if (!gameArea) return;
 
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-    if (!gameStarted || !touchStartRef.current) return;
-    
-    e.preventDefault(); // Prevent scrolling
-    const touch = e.changedTouches[0];
-    const deltaX = touch.clientX - touchStartRef.current.x;
-    const deltaY = touch.clientY - touchStartRef.current.y;
-    
-    // Minimum swipe distance to register a swipe
-    const minSwipeDistance = 30;
-    
-    // Determine the primary direction of the swipe
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      // Horizontal swipe
-      if (Math.abs(deltaX) > minSwipeDistance) {
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!gameStarted) return;
+      
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const touch = e.touches[0];
+      touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!gameStarted) return;
+      
+      // Prevent scrolling and other default behaviors
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (!gameStarted || !touchStartRef.current) return;
+      
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const touch = e.changedTouches[0];
+      const deltaX = touch.clientX - touchStartRef.current.x;
+      const deltaY = touch.clientY - touchStartRef.current.y;
+      
+      // Minimum swipe distance (reduced for better mobile responsiveness)
+      const minSwipeDistance = 15;
+      
+      // Only process if we have a significant swipe
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      if (distance < minSwipeDistance) {
+        touchStartRef.current = null;
+        return;
+      }
+      
+      // Determine the primary direction of the swipe
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe
         if (deltaX > 0) {
           // Swipe right
           if (direction.x !== -1) addDirectionToQueue({ x: 1, y: 0 });
@@ -174,10 +199,8 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
           // Swipe left
           if (direction.x !== 1) addDirectionToQueue({ x: -1, y: 0 });
         }
-      }
-    } else {
-      // Vertical swipe
-      if (Math.abs(deltaY) > minSwipeDistance) {
+      } else {
+        // Vertical swipe
         if (deltaY > 0) {
           // Swipe down
           if (direction.y !== -1) addDirectionToQueue({ x: 0, y: 1 });
@@ -186,9 +209,21 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
           if (direction.y !== 1) addDirectionToQueue({ x: 0, y: -1 });
         }
       }
-    }
-    
-    touchStartRef.current = null;
+      
+      touchStartRef.current = null;
+    };
+
+    // Add event listeners with proper options for mobile
+    gameArea.addEventListener('touchstart', handleTouchStart, { passive: false });
+    gameArea.addEventListener('touchmove', handleTouchMove, { passive: false });
+    gameArea.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+    // Cleanup
+    return () => {
+      gameArea.removeEventListener('touchstart', handleTouchStart);
+      gameArea.removeEventListener('touchmove', handleTouchMove);
+      gameArea.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [gameStarted, direction, addDirectionToQueue]);
 
   const startGame = () => {
@@ -196,7 +231,7 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="flex flex-col items-center p-4 select-none">
       <div className="mb-4 text-center">
         <div className="text-lg font-semibold text-blue-600 dark:text-green-400">
           {lang === 'es' ? 'Puntuación:' : 'Score:'} {score}
@@ -205,13 +240,14 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
       
       <div
         ref={gameAreaRef}
-        className="relative border-2 rounded-lg shadow-lg border-gray-600 dark:border-gray-800 bg-white dark:bg-gray-900 touch-none"
+        className="relative border-2 rounded-lg shadow-lg border-gray-600 dark:border-gray-800 bg-white dark:bg-gray-900 touch-none select-none"
         style={{
           width: width * cellSize,
           height: height * cellSize,
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none',
+          touchAction: 'none',
         }}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
       >
         {/* Snake */}
         {snake.map((segment, index) => (
