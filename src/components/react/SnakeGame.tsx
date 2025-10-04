@@ -12,7 +12,7 @@ interface SnakeGameProps {
   lang?: 'es' | 'en';
 }
 
-export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang = 'en' }: SnakeGameProps) {
+export default function SnakeGame({ width = 20, height = 20, cellSize = 19, lang = 'en' }: SnakeGameProps) {
   const [snake, setSnake] = useState<Position[]>([{ x: 10, y: 10 }]);
   const [food, setFood] = useState<Position>({ x: 15, y: 15 });
   const [direction, setDirection] = useState<Position>({ x: 0, y: -1 });
@@ -139,9 +139,9 @@ export default function SnakeGame({ width = 20, height = 20, cellSize = 20, lang
   }, [addDirectionToQueue]);
 
   useEffect(() => {
-    // Slightly slower game speed for better mobile experience
+    // Increased framerate for smoother gameplay
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const gameSpeed = isMobile ? 120 : 80;
+    const gameSpeed = isMobile ? 90 : 60;
     const gameLoop = setInterval(moveSnake, gameSpeed);
     return () => clearInterval(gameLoop);
   }, [moveSnake]);
