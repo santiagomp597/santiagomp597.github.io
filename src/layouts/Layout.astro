@@ -3,6 +3,7 @@ import "@fontsource/poppins";
 
 import Header from "../components/astro/Header.astro";
 import Footer from "../components/astro/Footer.astro";
+import Toast from "../components/astro/Toast.astro";
 import type { Translation } from "@/interfaces/translation";
 
 interface Props {
@@ -20,7 +21,10 @@ const { description, title, lang, translation } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -36,6 +40,7 @@ const { description, title, lang, translation } = Astro.props;
     <Header lang={lang} translation={translation.sectionTitles} />
     <slot />
     <Footer translation={translation.footerNote} />
+    <Toast lang={lang} />
     <style is:global>
       :root {
         color-scheme: light dark;
