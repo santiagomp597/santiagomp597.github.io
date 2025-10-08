@@ -1,10 +1,10 @@
 ---
-import type { ExperienceItemI } from '@/interfaces/translation';
+import type { ExperienceItem } from '@/interfaces/translation';
 import { Image } from 'astro:assets';
-import kargoImage from "../assets/kargo.png";
-import sostereoImage from "../assets/sostereo.png";
-import banlineaImage from "../assets/banlinea.png";
-import itoSoftwareImage from "../assets/ito-software.png";
+import kargoImage from "../../assets/kargo.png";
+import sostereoImage from "../../assets/sostereo.png";
+import banlineaImage from "../../assets/banlinea.png";
+import itoSoftwareImage from "../../assets/ito-software.png";
 
 const imageMap: Record<string, ImageMetadata> = {
   kargoImage: kargoImage,
@@ -12,7 +12,7 @@ const imageMap: Record<string, ImageMetadata> = {
   banlineaImage: banlineaImage,
   itoSoftwareImage: itoSoftwareImage,
 };
-interface Props extends ExperienceItemI {
+interface Props extends ExperienceItem {
 }
 
 const {

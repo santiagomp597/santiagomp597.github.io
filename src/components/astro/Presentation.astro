@@ -2,12 +2,12 @@
 const personalImageAlt = "Santiago Murillo";
 const linkedInUrl = "https://linkedin.com/in/santiago-murillo";
 import LinkedInIcon from "@/components/icons/LinkedIn.astro";
-import SocialPill from "@/components/SocialPill.astro";
-import Download from "./icons/Download.astro";
+import SocialPill from "@/components/astro/SocialPill.astro";
+import Download from "../icons/Download.astro";
 import { Image } from "astro:assets";
-import avatarImage from "../assets/avatar.png";
+import avatarImage from "../../assets/avatar.png";
 import type { Presentation } from "@/interfaces/translation";
-import Typewriter from "./react/Typewriter.tsx";
+import Typewriter from "../react/Typewriter.tsx";
 
 interface Props {
   lang: string;

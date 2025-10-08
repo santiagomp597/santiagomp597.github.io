@@ -1,9 +1,9 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-import type { ExperienceItemI } from "@/interfaces/translation";
+import type { ExperienceItem as ExperienceItemType } from "@/interfaces/translation";
 
 interface Props {
-  experienceItems: ExperienceItemI[];
+  experienceItems: ExperienceItemType[];
 }
 
 const { experienceItems } = Astro.props;
