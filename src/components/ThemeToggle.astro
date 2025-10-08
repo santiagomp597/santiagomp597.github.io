@@ -1,24 +1,33 @@
 ---
 import SunIcon from "./icons/Sun.astro";
 import MoonIcon from "./icons/Moon.astro";
-const { class: className } = Astro.props;
+
+interface Props {
+  class?: string;
+  id?: string;
+}
+
+const { class: className, id: containerId } = Astro.props;
+const uniqueId = containerId || "theme-toggle";
 ---
 
-<div id="theme-toggle-container" class={`${className} appearance-none`}>
+<div
+  id={uniqueId}
+  class={`${className} appearance-none theme-toggle-container`}
+>
   <MoonIcon
-    id="dark"
     class="theme-toggle-icon size-5 hover:scale-125 transition-all"
+    data-theme="dark"
   />
   <SunIcon
-    id="light"
     class="theme-toggle-icon size-5 hover:scale-125 transition-all"
+    data-theme="light"
   />
 </div>
 
 <script is:inline>
   (function () {
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    const themeToggleBtn = document.getElementById("theme-toggle-container");
 
     const getTheme = () =>
       localStorage.getItem("theme") || (matchMedia.matches ? "dark" : "light");
@@ -30,21 +39,40 @@ const { class: className } = Astro.props;
       document.documentElement.classList.toggle("dark", isDark);
 
       document.querySelectorAll(".theme-toggle-icon").forEach((el) => {
-        const isCurrent = el.id === theme;
+        const isCurrent = el.getAttribute("data-theme") === theme;
         el.style.scale = isCurrent ? "1" : "0";
         el.classList.toggle("hidden", !isCurrent);
         el.classList.toggle("visible", isCurrent);
       });
     };
 
-    themeToggleBtn.addEventListener("click", (e) => {
+    // Create a single theme toggle handler
+    const handleThemeToggle = (e) => {
       e.stopPropagation();
       localStorage.setItem("theme", getTheme() === "dark" ? "light" : "dark");
       applyTheme();
-    });
+    };
+
+    const initThemeToggle = () => {
+      document
+        .querySelectorAll(".theme-toggle-container")
+        .forEach((container) => {
+          if (container.hasAttribute("data-theme-initialized")) {
+            return;
+          }
+          // Add the listener
+          container.addEventListener("click", handleThemeToggle);
+          container.setAttribute("data-theme-initialized", "true");
+        });
+    };
 
     matchMedia.addEventListener("change", applyTheme);
-    document.addEventListener("astro:after-swap", applyTheme);
+    document.addEventListener("astro:after-swap", () => {
+      applyTheme();
+      initThemeToggle();
+    });
+
     applyTheme();
+    initThemeToggle();
   })();
 </script>

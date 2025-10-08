@@ -2,7 +2,6 @@
 import SettingsIcon from "./icons/Settings.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import LanguageToggle from "./LanguageToggle.astro";
-import type { Translation } from "@/interfaces/translation";
 const {} = Astro.props;
 interface Props {
   class?: string;
@@ -26,7 +25,7 @@ const { class: className, lang } = Astro.props;
   >
     <ul class="list-none">
       <li class="m-2">
-        <ThemeToggle />
+        <ThemeToggle class="desktop-theme-toggle" id="desktop-theme-toggle" />
       </li>
       <li class="m-2">
         <LanguageToggle lang={lang} />

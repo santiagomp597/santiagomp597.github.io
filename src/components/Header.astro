@@ -1,48 +1,50 @@
 ---
 import type { SectionTitles } from "@/interfaces/translation";
 import SettingsToggle from "./SettingsToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import LanguageToggle from "./LanguageToggle.astro";
 
 interface Props {
   lang: string;
   translation: SectionTitles;
 }
-
 const { lang, translation } = Astro.props;
 const navItems = [
   {
-    title: translation.professionalExperience,
     label: "experience",
+    title: translation.professionalExperience,
     url: "#experience",
   },
   {
-    title: translation.aboutMe,
     label: "about",
+    title: translation.aboutMe,
     url: "#about",
   },
   {
-    title: translation.technologies,
     label: "technologies",
+    title: translation.technologies,
     url: "#technologies",
   },
-/*  {
-    title: translation.gameTime,
+  {
     label: "game-time",
+    title: translation.gameTime,
     url: "#game-time",
-  },*/
+  },
 ];
 ---
 
 <header
   class="fixed top-0 z-10 flex items-center justify-end justify-self-center-anchor w-full mx-auto mt-2 px-3"
 >
-  <nav class="flex rounded-xl mx-auto w-full max-w-6xl">
+  <!-- Desktop Navigation -->
+  <nav class="hidden md:flex rounded-xl mx-auto w-full max-w-6xl">
     <div
       class="flex justify-around px-2 text-sm font-medium text-gray-600 dark:text-gray-200 items-center w-full"
     >
       {
         navItems.map((link) => (
           <a
-            class="relative block py-2 px-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+            class="relative block py-2 px-2 transition hover:text-blue-500 dark:hover:text-green-500"
             aria-label={link.label}
             href={link.url}
           >
@@ -53,19 +55,158 @@ const navItems = [
       <SettingsToggle lang={lang} />
     </div>
   </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden w-full flex justify-end">
+    <!-- Hamburger Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="mobile-menu-button p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800/90 transition-colors"
+      aria-label="Toggle mobile menu"
+    >
+      <div class="hamburger-icon">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu-overlay"
+    class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+  >
+  </div>
+
+  <!-- Mobile Menu Sidebar -->
+  <div
+    id="mobile-menu-sidebar"
+    class="fixed top-0 right-0 h-full w-80 max-w-[80vw] bg-white dark:bg-zinc-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+  >
+    <!-- Menu Header -->
+    <div
+      class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700"
+    >
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
+      <button
+        id="mobile-menu-close"
+        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        aria-label="Close mobile menu"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menu Items -->
+    <nav class="flex flex-col p-4 space-y-2">
+      {
+        navItems.map((link) => (
+          <a
+            class="mobile-nav-link block py-3 px-4 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            aria-label={link.label}
+            href={link.url}
+          >
+            {link.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Settings Section -->
+    <div
+      class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-700"
+    >
+      <div class="space-y-4">
+        <!-- Language Toggle -->
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-200"
+            >Language</span
+          >
+          <LanguageToggle lang={lang} />
+        </div>
+        <!-- Theme Toggle -->
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-200"
+            >Theme</span
+          >
+          <ThemeToggle class="mobile-theme-toggle" id="mobile-theme-toggle" />
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <script>
+  // Mobile menu functionality
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenuClose = document.getElementById("mobile-menu-close");
+  const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+  const mobileMenuSidebar = document.getElementById("mobile-menu-sidebar");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+  function openMobileMenu() {
+    if (mobileMenuOverlay && mobileMenuSidebar) {
+      mobileMenuOverlay.classList.remove("pointer-events-none", "opacity-0");
+      mobileMenuOverlay.classList.add("pointer-events-auto", "opacity-100");
+      mobileMenuSidebar.classList.remove("translate-x-full");
+      mobileMenuSidebar.classList.add("translate-x-0");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closeMobileMenu() {
+    if (mobileMenuOverlay && mobileMenuSidebar) {
+      mobileMenuOverlay.classList.add("pointer-events-none", "opacity-0");
+      mobileMenuOverlay.classList.remove("pointer-events-auto", "opacity-100");
+      mobileMenuSidebar.classList.add("translate-x-full");
+      mobileMenuSidebar.classList.remove("translate-x-0");
+      document.body.style.overflow = "";
+    }
+  }
+
+  mobileMenuBtn?.addEventListener("click", openMobileMenu);
+  mobileMenuClose?.addEventListener("click", closeMobileMenu);
+  mobileMenuOverlay?.addEventListener("click", closeMobileMenu);
+
+  // Close mobile menu when clicking on nav links
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      setTimeout(closeMobileMenu, 100);
+    });
+  });
+
+  // Close mobile menu on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeMobileMenu();
+    }
+  });
+
+  // Section highlighting functionality
   const sections = document.querySelectorAll("section");
-  const navItems = document.querySelectorAll("header nav div a");
+  const desktopNavItems = document.querySelectorAll("header nav div a");
+  const mobileNavItems = document.querySelectorAll(".mobile-nav-link");
+
   const callback = (entries: any[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        navItems.forEach((item) => {
+        [...desktopNavItems, ...mobileNavItems].forEach((item) => {
           if (item.getAttribute("aria-label") == entry.target.id) {
-            item.classList.add("text-blue-500");
+            item.classList.add("active");
           } else {
-            item.classList.remove("text-blue-500");
+            item.classList.remove("active");
           }
         });
       }
@@ -111,6 +252,54 @@ const navItems = [
     @apply dark:bg-zinc-800/90 bg-white/50;
   }
 
+  /* Hamburger Menu Styles */
+  .hamburger-icon {
+    @apply flex flex-col justify-center items-center w-6 h-6 cursor-pointer;
+  }
+
+  .hamburger-line {
+    @apply w-5 h-0.5 bg-gray-700 dark:bg-gray-200 rounded-full transition-all duration-300 ease-in-out;
+  }
+
+  .hamburger-line:not(:last-child) {
+    @apply mb-1;
+  }
+
+  #mobile-menu-btn:hover .hamburger-line {
+    @apply bg-blue-500;
+  }
+
+  /* Mobile Menu Sidebar Styles */
+  #mobile-menu-sidebar {
+    @apply backdrop-blur-md;
+    box-shadow:
+      -10px 0 25px -5px rgba(0, 0, 0, 0.1),
+      -10px 0 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .mobile-nav-link {
+    @apply font-medium;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .mobile-nav-link:hover {
+    @apply border-l-blue-500 bg-blue-50 dark:border-l-green-500 dark:bg-green-900/20;
+  }
+
+  .mobile-nav-link.active {
+    @apply border-l-blue-500 bg-blue-50 dark:border-l-green-500 dark:bg-green-900/20;
+  }
+
+  /* Mobile Theme Toggle Styles */
+  .mobile-theme-toggle {
+    @apply flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-800;
+  }
+
+  .mobile-theme-toggle .theme-toggle-icon {
+    @apply transition-all duration-200;
+  }
+
   @keyframes nav-shadow {
     0% {
       @apply dark:bg-zinc-800/0 bg-white/0;
@@ -129,6 +318,29 @@ const navItems = [
     }
     to {
       opacity: 1;
+    }
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body.mobile-menu-open {
+    @apply overflow-hidden;
+  }
+
+  /* Mobile hamburger button backdrop effect */
+  .mobile-menu-button {
+    animation: nav-shadow 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  /* Mobile menu slide animation */
+  @media (max-width: 768px) {
+    #mobile-menu-sidebar {
+      transform: translateX(100%);
+    }
+
+    #mobile-menu-sidebar.translate-x-0 {
+      transform: translateX(0);
     }
   }
 </style>
